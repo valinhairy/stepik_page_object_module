@@ -18,3 +18,10 @@ class ProductPage(BasePage):
         added_product_price = self.browser.find_element(*ProductPageLocators.ADDED_PRODUCT_PRICE).text
         assert product_price == added_product_price, f"added product price doesn't match\
          got {added_product_price} instead of {product_price}"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_presented(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "success message presented, but shouldn't be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "success message hasn't disappeared"
