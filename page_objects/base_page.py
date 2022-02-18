@@ -24,8 +24,8 @@ class BasePage:
         assert self.is_element_presented(*BasePageLocators.LOGIN_LINK), "login link isn't presented"
 
     def go_to_basket_page(self):
-        login_link = self.browser.find_element(*BasePageLocators.BASKET_PAGE_LINK)
-        login_link.click()
+        basket_link = self.browser.find_element(*BasePageLocators.BASKET_PAGE_LINK)
+        basket_link.click()
 
     def is_element_presented(self, how, what):
         try:
@@ -60,3 +60,7 @@ class BasePage:
                 until_not(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
+
+    def should_be_authorized_user(self):
+        assert self.is_element_presented(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
